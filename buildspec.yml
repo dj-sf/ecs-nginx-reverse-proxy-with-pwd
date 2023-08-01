@@ -3,6 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - aws configure set default.region us-east-1
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=889837740355.dkr.ecr.us-east-1.amazonaws.com/nginx-reverse-proxy
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
